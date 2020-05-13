@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.example.blog_mvc.model.Post;
 
 @Controller
-public class HomeController {
+public class HomeController{
 	
 	private static final Logger log = LoggerFactory.getLogger(HomeController.class);
 	
@@ -30,4 +30,5 @@ public class HomeController {
 		mv.addObject("postDetails", postTreeSet);
 		return mv;
 	}
+
 }

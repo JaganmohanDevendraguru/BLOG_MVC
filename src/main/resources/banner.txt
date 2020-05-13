@@ -1,0 +1,4 @@
+========================================
+Jagan's Application
+========================================
+:: Spring Boot :: ${spring-boot.version} :: ${application.version}
