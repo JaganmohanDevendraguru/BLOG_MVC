@@ -13,6 +13,6 @@
 <script src="/webjars/jquery/jquery.min.js"></script>
 <script src="/webjars/popper.js/umd/popper.js"></script>
 <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
-<title>Home Page</title>
+<title>${title}</title>
 </head>
 <body>
