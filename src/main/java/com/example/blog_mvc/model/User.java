@@ -18,7 +18,7 @@ public class User {
 	private String state;
 	private int zip;
 	private String country;
-	private char activeFlag;
+	private String activeFlag;
 	private Date registerDate;
 	
 	public User() {
@@ -27,7 +27,7 @@ public class User {
 	}
 	public User(int userId, String firstName, String lastName, String password, String userName, String email,
 			String mobile, String authToken, String street, String apt, String city, String state, int zip,
-			String country, char activeFlag, Date registerDate) {
+			String country, String activeFlag, Date registerDate) {
 		super();
 		this.userId = userId;
 		this.firstName = firstName;
@@ -130,10 +130,10 @@ public class User {
 	public void setCountry(String country) {
 		this.country = country;
 	}
-	public char getActiveFlag() {
+	public String getActiveFlag() {
 		return activeFlag;
 	}
-	public void setActiveFlag(char activeFlag) {
+	public void setActiveFlag(String activeFlag) {
 		this.activeFlag = activeFlag;
 	}
 	public Date getRegisterDate() {
