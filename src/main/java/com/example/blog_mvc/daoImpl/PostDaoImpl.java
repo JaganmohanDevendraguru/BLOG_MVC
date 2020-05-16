@@ -82,9 +82,13 @@ class PostRowMapper implements RowMapper<Post>{
 	public Post mapRow(ResultSet rs, int rowNum) throws SQLException {
 		
 		Post post = new Post();
-		post.setPostId(rs.getInt(1));
-		post.setPost(rs.getBlob(2));
-		
+		post.setUserId(rs.getInt(1));
+		post.setPostId(rs.getInt(2));
+		post.setPostTitle(rs.getString(3));
+		post.setPost(rs.getBlob(4));
+		post.setPostDate(rs.getTimestamp(5));
+		post.setLastUpdateTime(rs.getTimestamp(6));
+		post.setStatus(rs.getString(7));
 		return post;
 	}
 	

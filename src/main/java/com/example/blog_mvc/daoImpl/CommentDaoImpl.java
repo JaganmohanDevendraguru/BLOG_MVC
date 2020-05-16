@@ -10,7 +10,6 @@ import org.springframework.jdbc.core.RowMapper;
 
 import com.example.blog_mvc.dao.CommentDao;
 import com.example.blog_mvc.model.Comment;
-import com.example.blog_mvc.model.Post;
 
 public class CommentDaoImpl implements CommentDao{
 
@@ -54,7 +53,7 @@ private JdbcTemplate jdbcTemplate;
 	}
 
 	@Override
-	public List<Comment> findAllByPost(Post id) {
+	public List<Comment> findAllByPost(int id) {
 			String selectCom = "select * from comment where post_id=? order by comment_date desc";
 			return jdbcTemplate.query(selectCom, new CommentRowMapper(), id);
 	}

@@ -32,25 +32,22 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public int updateUser(User user) {
-		return 0;
+		return dao.updateUser(user);
 	}
 
 	@Override
 	public int saveUser(User user) {
-		
-		return 0;
+		return dao.saveUser(user);
 	}
 
 	@Override
 	public int deleteUser(int id) {
-		// TODO Auto-generated method stub
-		return 0;
+		return dao.deleteUser(id);
 	}
 
 	@Override
 	public List<User> findAll(String status) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.findAll(status);
 	}
 
 }

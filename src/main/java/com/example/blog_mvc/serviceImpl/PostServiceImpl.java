@@ -1,62 +1,62 @@
 package com.example.blog_mvc.serviceImpl;
 
+import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.blog_mvc.dao.PostDao;
 import com.example.blog_mvc.model.Post;
 import com.example.blog_mvc.service.PostService;
 
 @Service
 public class PostServiceImpl implements PostService {
 
+	@Autowired
+	private PostDao dao;
+	
 	@Override
 	public List<Post> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.findAll();
 	}
 
 	@Override
 	public List<Post> findAll(String status) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.findAll(status);
 	}
 
 	@Override
 	public List<Post> findAllByDateAndStatus(String status, Date date) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.findAllByDateAndStatus(status, date);
 	}
 
 	@Override
 	public int updatePost(Post post) {
-		// TODO Auto-generated method stub
-		return 0;
+		return dao.updatePost(post);
 	}
 
 	@Override
-	public int deletePost(int id) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int deletePost(int postId, int userId) {
+		java.sql.Timestamp time = new Timestamp(Calendar.getInstance().getTimeInMillis());
+		return dao.deletePost(postId, userId, time);
 	}
 
 	@Override
 	public Post findByPostById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.findPostById(id);
 	}
 
 	@Override
-	public List<Post> findAllByUser(Post id) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Post> findAllByUser(int uid) {
+		return dao.findAllByUser(uid);
 	}
 
 	@Override
 	public List<Map<String, Object>> fullPostDetails(int postId) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
