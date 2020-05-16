@@ -1,6 +1,5 @@
 package com.example.blog_mvc.dao;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -13,7 +12,6 @@ public interface CommentDao {
 
 	public abstract List<Comment> findAll();
 	public abstract List<Comment> findAll(String status);
-	public abstract List<Comment> findAllByDateAndStatus(String status, Date date);
 	public abstract int updateComment(Comment comment);
 	public abstract int deleteComment(int id);
 	public abstract Comment findByCommentId(int id);

@@ -45,7 +45,7 @@ public class PostDaoImpl implements PostDao{
 		String update = "update post set title=?, post=?, post_date=?, last_update_time=?, status=?"
 				+ "where post_id=? and user_id=?";
 		return jdbcTemplate.update(update, post.getPostTitle(), post.getPost(), post.getPostDate(), post.getLastUpdateTime(),
-				post.getStatus());
+				post.getStatus(), post.getPostId(), post.getUserId());
 	}
 
 	@Override
@@ -59,7 +59,7 @@ public class PostDaoImpl implements PostDao{
 	@Override
 	public int deletePost(int postId, int userId, Timestamp time) {
 		String delete = "update post set status=?, last_update_time=? where post_id=? and user_id=?";
-		return jdbcTemplate.update(delete, postId, userId, time);
+		return jdbcTemplate.update(delete, "N", time, postId, userId);
 	}
 
 	@Override
@@ -83,7 +83,7 @@ class PostRowMapper implements RowMapper<Post>{
 		
 		Post post = new Post();
 		post.setPostId(rs.getInt(1));
-		post.setPost(rs.getString(2));
+		post.setPost(rs.getBlob(2));
 		
 		return post;
 	}

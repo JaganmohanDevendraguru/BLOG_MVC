@@ -1,5 +1,6 @@
 package com.example.blog_mvc.model;
 
+import java.sql.Blob;
 import java.util.Date;
 
 public class Post {
@@ -7,7 +8,7 @@ public class Post {
 	private int postId;
 	private int userId;
 	private String postTitle;
-	private String post;
+	private Blob post;
 	private Date postDate;
 	private Date lastUpdateTime;
 	private String status;
@@ -17,7 +18,7 @@ public class Post {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Post(int postId, String postTitle, String post, Date postDate, Date lastUpdateTime, String status) {
+	public Post(int postId, String postTitle, Blob post, Date postDate, Date lastUpdateTime, String status) {
 		super();
 		this.postId = postId;
 		this.postTitle = postTitle;
@@ -27,7 +28,7 @@ public class Post {
 		this.status = status;
 	}
 
-	public Post(int postId, int userId, String postTitle, String post, Date postDate, Date lastUpdateTime,
+	public Post(int postId, int userId, String postTitle, Blob post, Date postDate, Date lastUpdateTime,
 			String status) {
 		super();
 		this.postId = postId;
@@ -57,10 +58,10 @@ public class Post {
 	public void setPostTitle(String postTitle) {
 		this.postTitle = postTitle;
 	}
-	public String getPost() {
+	public Blob getPost() {
 		return post;
 	}
-	public void setPost(String post) {
+	public void setPost(Blob post) {
 		this.post = post;
 	}
 	public Date getPostDate() {

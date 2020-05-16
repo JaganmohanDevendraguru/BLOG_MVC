@@ -42,11 +42,11 @@ public class UserDaoImpl implements UserDao{
 	public int updateUser(User user) {
 		String update = "update user set first_name=?, last_name=?, user_name=?, "
 				+ "password=?, email=?, phone=?, auth_token=?, street=?, apt=?"
-				+ "city=?, state=?, zip=?, country=?, active_flag=?, register_date=?";
+				+ "city=?, state=?, zip=?, country=?, active_flag=?, register_date=? where user_id=?";
 		return jdbcTemplate.update(update, user.getFirstName(), user.getLastName(),user.getUserName(),
 				user.getPassword(), user.getEmail(), user.getMobile(), user.getAuthToken(), user.getStreet(),
 				user.getApt(), user.getCity(), user.getState(), user.getZip(), user.getCountry(), user.getActiveFlag(),
-				user.getRegisterDate());
+				user.getRegisterDate(), user.getUserId());
 	}
 	
 	

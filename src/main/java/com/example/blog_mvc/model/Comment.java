@@ -1,5 +1,6 @@
 package com.example.blog_mvc.model;
 
+import java.sql.Blob;
 import java.util.Date;
 
 public class Comment {
@@ -7,7 +8,7 @@ public class Comment {
 	private int postId;
 	private int userId;
 	private String commentTitle;
-	private String comment;
+	private Blob comment;
 	private Date commentDate;
 	private Date lastUpdateTime;
 	private String status;
@@ -16,7 +17,7 @@ public class Comment {
 		super();
 	}
 	
-	public Comment(int commentId, String commentTitle, String comment, Date commentDate, Date lastUpdateTime,
+	public Comment(int commentId, String commentTitle, Blob comment, Date commentDate, Date lastUpdateTime,
 			String status) {
 		super();
 		this.commentId = commentId;
@@ -27,7 +28,7 @@ public class Comment {
 		this.status = status;
 	}
 	
-	public Comment(int commentId, int postId, int userId, String commentTitle, String comment, Date commentDate,
+	public Comment(int commentId, int postId, int userId, String commentTitle, Blob comment, Date commentDate,
 			Date lastUpdateTime, String status) {
 		super();
 		this.commentId = commentId;
@@ -64,10 +65,10 @@ public class Comment {
 	public void setCommentTitle(String commentTitle) {
 		this.commentTitle = commentTitle;
 	}
-	public String getComment() {
+	public Blob getComment() {
 		return comment;
 	}
-	public void setComment(String comment) {
+	public void setComment(Blob comment) {
 		this.comment = comment;
 	}
 	public Date getCommentDate() {
