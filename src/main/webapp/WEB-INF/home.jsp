@@ -4,5 +4,4 @@
 <c:out value="${context}" />
 <c:out value="${name}" />
 </div>
-</body>
-</html>
+<%@ include file="include/footer.jspf" %>

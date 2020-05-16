@@ -7,10 +7,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 
 import com.example.blog_mvc.dao.UserDao;
 import com.example.blog_mvc.model.User;
 
+@Repository
 public class UserDaoImpl implements UserDao{
 	
 	private JdbcTemplate jdbcTemplate;
@@ -96,8 +98,7 @@ class UserRowMapper implements RowMapper<User>{
 		user.setZip(rs.getInt(13));
 		user.setCountry(rs.getString(14));
 		user.setActiveFlag(rs.getString(15));
-		user.setState(rs.getString(16));
-		user.setRegisterDate(rs.getTimestamp(17));
+		user.setRegisterDate(rs.getTimestamp(16));
 		return user;
 	}
 	

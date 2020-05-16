@@ -1,5 +1,6 @@
 package com.example.blog_mvc.exception;
 
+import java.sql.SQLException;
 import java.util.Calendar;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,9 +15,19 @@ public class GenericExceptions {
 	
 	private Logger log = LoggerFactory.getLogger(GenericExceptions.class);
 
-	@ExceptionHandler(value= RuntimeException.class)
-	public String handleError(HttpServletRequest request, Exception e) {
-		log.error("Request: " + request.getRequestURI() + " raised "+ e + "at " +Calendar.getInstance().getTimeInMillis());
+	@ExceptionHandler(value= SQLException.class)
+	public String handleSql(HttpServletRequest request, Exception e) {
+		log.error("Request: " + request.getRequestURI() + " raised an exception");
+		log.error("Exception Id is: " +Calendar.getInstance().getTimeInMillis());
+		e.printStackTrace();
+		return "error";
+	}
+	
+	@ExceptionHandler(value=RuntimeException.class)
+	public String handleRuntime(HttpServletRequest request, Exception e) {
+		log.error("Request: " + request.getRequestURI() + " raised an exception");
+		log.error("Exception Id is: " +Calendar.getInstance().getTimeInMillis());
+		e.printStackTrace();
 		return "error";
 	}
 }

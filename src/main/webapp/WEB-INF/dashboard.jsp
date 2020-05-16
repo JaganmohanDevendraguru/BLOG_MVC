@@ -1,4 +1,3 @@
 <%@ include file="include/meta.jspf" %>
 Dashboard
-</body>
-</html>
+<%@ include file="include/footer.jspf" %>

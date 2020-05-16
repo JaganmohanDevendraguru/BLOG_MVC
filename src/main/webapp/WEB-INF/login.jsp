@@ -6,5 +6,4 @@
 		<input type="submit" value="Login" />
 	</form>
 </div>
-</body>
-</html>
+<%@ include file="include/footer.jspf" %>

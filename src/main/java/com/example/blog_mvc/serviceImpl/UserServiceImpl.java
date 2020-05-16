@@ -2,35 +2,42 @@ package com.example.blog_mvc.serviceImpl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.blog_mvc.dao.UserDao;
 import com.example.blog_mvc.model.User;
 import com.example.blog_mvc.service.UserService;
 
 @Service
 public class UserServiceImpl implements UserService {
 
+	@Autowired
+	private UserDao dao;
+	
 	@Override
-	public List<User> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<User> findAllUsers() {
+		return dao.findAll();
 	}
 
 	@Override
 	public User findByUserId(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.findByUserId(id);
 	}
 
 	@Override
-	public User findByUsernameAndPassword() {
-		// TODO Auto-generated method stub
-		return null;
+	public User findByUsernameAndPassword(String name, String password) {
+		return dao.findByUsernameAndPassword(name, password);
 	}
 
 	@Override
 	public int updateUser(User user) {
-		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int saveUser(User user) {
+		
 		return 0;
 	}
 
