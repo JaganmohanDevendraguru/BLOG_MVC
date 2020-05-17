@@ -9,10 +9,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 
 import com.example.blog_mvc.dao.PostDao;
 import com.example.blog_mvc.model.Post;
 
+@Repository
 public class PostDaoImpl implements PostDao{
 
 	private JdbcTemplate jdbcTemplate;

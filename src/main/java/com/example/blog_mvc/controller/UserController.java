@@ -23,7 +23,7 @@ public class UserController {
 	
 	@Autowired
 	private UserService service;
-	@Autowired
+	
 	private Logger log =LoggerFactory.getLogger(UserController.class);
 
 	public ModelAndView viewAllUsersPage(ModelAndView mv) {

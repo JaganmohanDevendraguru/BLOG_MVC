@@ -1,0 +1,8 @@
+<nav>
+	<ul>
+		<li><a href="${context}">Home</a></li>
+		<li><a href="${context}/login">Sign in</a></li>
+		<li><a href="${context}/register">Register</a></li>
+		<li><a href="${context}/blogs">Blog</a></li>
+	</ul>
+</nav>

@@ -7,10 +7,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 
 import com.example.blog_mvc.dao.CommentDao;
 import com.example.blog_mvc.model.Comment;
 
+@Repository
 public class CommentDaoImpl implements CommentDao{
 
 private JdbcTemplate jdbcTemplate;
