@@ -1,7 +1,12 @@
-<footer>
-  <p>Design & Developed by: Jaganmohan D. All rights reserved.</p>
-  <p>Email: <a href="mailto:jegan0307@gmail.com">
-  jegan0307@gmail.com</a>.</p>
+<footer class="card bg-light">
+	<div class="card-body">
+		<div class="card-text text-center">
+			<p>Design & Developed by: Jaganmohan D. All rights reserved.</p>
+			<p>
+				Email: <a href="mailto:jegan0307@gmail.com"> jegan0307@gmail.com</a>.
+			</p>
+		</div>
+	</div>
 </footer>
 </body>
 </html>
