@@ -27,6 +27,7 @@ import com.example.blog_mvc.model.User;
 import com.example.blog_mvc.service.CommentService;
 import com.example.blog_mvc.service.PostService;
 import com.example.blog_mvc.service.UserService;
+import com.example.blog_mvc.util.USAStates;
 import com.example.blog_mvc.util.Validation;
 
 @Controller
@@ -99,7 +100,7 @@ public class HomeController{
 		}
 		else {
 			userService.saveUser(user);
-			log.debug("user added: " + user);
+			log.info("user added: " + user);
 			mv.setViewName("redirect:/login");
 		}
 		return mv;
@@ -108,6 +109,7 @@ public class HomeController{
 	@GetMapping("/register")
 	public String viewUserAddPage(Model model) {
 		model.addAttribute("user", new User());
+		model.addAttribute("USStates", USAStates.values());
 		model.addAttribute("title", "User Registration");
 		return "userAdd";
 	}

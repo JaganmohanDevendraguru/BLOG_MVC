@@ -57,7 +57,7 @@ public class UserDaoImpl implements UserDao{
 	public int saveUser(User user) {
 		String insert = "insert into user (first_name, last_name, user_name, "
 				+ "password, email, phone, auth_token, street, apt, city, state, "
-				+ "zip, country, active_flag, register_date) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				+ "zip, country, active_flag, register_date) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		return jdbcTemplate.update(insert, user.getFirstName(), user.getLastName(),user.getUserName(),
 				user.getPassword(), user.getEmail(), user.getMobile(), user.getAuthToken(), user.getStreet(),
 				user.getApt(), user.getCity(), user.getState(), user.getZip(), user.getCountry(), user.getActiveFlag(),

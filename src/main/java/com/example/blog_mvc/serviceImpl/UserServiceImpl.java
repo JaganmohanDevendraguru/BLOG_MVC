@@ -1,5 +1,6 @@
 package com.example.blog_mvc.serviceImpl;
 
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public int saveUser(User user) {
+		user.setRegisterDate(Calendar.getInstance().getTime());
 		return dao.saveUser(user);
 	}
 

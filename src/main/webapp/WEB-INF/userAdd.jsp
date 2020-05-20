@@ -10,7 +10,7 @@
 					</div>
 				</div>
 				<div class="card-body">
-					<form:form action="login" method="post" modelAttribute="user"
+					<form:form action="${context}/register" method="post" modelAttribute="user"
 						class="form-horizontal">
 						<div class="form-row">
 							<div class="form-group col-md-6">
@@ -25,34 +25,28 @@
 									<form:input path="lastName" class="form-control" />
 								</div>
 							</div>
-						</div>
-						<div class="form-group">
-							<label>User Name:</label>
-							<div class="col-md-12">
+							<div class="form-group col-md-6">
+								<label>User Name:</label>
 								<div class="input-group input-group-md">
 									<form:input path="userName" class="form-control" />
 								</div>
 							</div>
-						</div>
-						<div class="form-group">
-							<label>Password:</label>
-							<div class="col-md-12">
+							<div class="form-group col-md-6">
+								<label>Password:</label>
 								<div class="input-group input-group-md">
 									<form:password path="password" class="form-control" />
 								</div>
 							</div>
 						</div>
-						<div class="form-group">
-							<label>Email:</label>
-							<div class="col-md-12">
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<label>Email:</label>
 								<div class="input-group input-group-md">
 									<form:input path="email" class="form-control" />
 								</div>
 							</div>
-						</div>
-						<div class="form-group">
-							<label>Mobile:</label>
-							<div class="col-md-12">
+							<div class="form-group col-md-6">
+								<label>Mobile:</label>
 								<div class="input-group input-group-md">
 									<form:input path="mobile" class="form-control" />
 								</div>
@@ -66,13 +60,21 @@
 								</div>
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-row">
+						<div class="form-group col-md-5">
 							<label>Apt/Suite:</label>
-							<div class="col-md-12">
-								<div class="input-group input-group-md">
-									<form:input path="apt" class="form-control" />
-								</div>
+							<div class="input-group input-group-md">
+								<form:input path="apt" class="form-control" />
 							</div>
+						</div>
+						<div class="form-group col-md-5 offset-md-1">
+							<label>Active:</label>
+							<div class="input-group input-group-md">
+								<form:select path="activeFlag" class="form-control custom-select">
+								<form:options />
+								</form:select>
+							</div>
+						</div>
 						</div>
 						<div class="form-row">
 							<div class="form-group col-md-6">
@@ -85,8 +87,8 @@
 								<label>State:</label>
 								<div class="input-group input-group-md">
 									<form:select path="state" class="form-control custom-select">
-										<option selected>Open this select menu</option>
-										<option value="1">NH</option>
+										<form:option value="NULL">Select State</form:option>
+										<form:options items="${USStates}"/>
 									</form:select>
 								</div>
 							</div>
@@ -106,19 +108,11 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label>Active:</label>
-							<div class="col-md-12">
+							<div class="col-md-2">
 								<div class="input-group input-group-md">
-									<form:input path="activeFlag" class="form-control" />
+									<form:button value="Login" class="form-control btn btn-primary">Login</form:button>
 								</div>
 							</div>
-						</div>
-						<div class="form-group">
-						<div class="col-md-2">
-							<div class="input-group input-group-md">
-								<form:button value="Login" class="form-control btn btn-primary">Login</form:button>
-							</div>
-						</div>
 						</div>
 					</form:form>
 				</div>
