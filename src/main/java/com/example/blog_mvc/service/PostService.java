@@ -12,6 +12,7 @@ public interface PostService {
 	public abstract List<Post> findAll(String status);
 	public abstract List<Post> findAllByDateAndStatus(String status, Date date);
 	public abstract int updatePost(Post post);
+	public abstract int savePost(Post post);
 	public abstract int deletePost(int pId, int uId);
 	public abstract Post findByPostById(int id);
 	public abstract List<Post> findAllByUser(int id);

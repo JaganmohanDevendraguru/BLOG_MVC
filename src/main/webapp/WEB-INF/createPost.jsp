@@ -22,7 +22,13 @@
 							<div class="form-group">
 								<label>Post Body:</label>
 								<div class="input-group input-group-md">
-									<form:textarea path="post" class="form-control" id="editor1"/>
+									<form:textarea path="post" class="form-control" id="editor1" />
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="input-group input-group-md">
+									<form:button path="status" class="form-control" name="publish" value="P">Publish</form:button>
+									<form:button path="status" class="form-control" name="save" value="DR">Save & Exit</form:button>
 								</div>
 							</div>
 						</div>
@@ -33,6 +39,6 @@
 	</div>
 </div>
 <%@ include file="include/footer.jspf"%>
-		<script>
-			CKEDITOR.replace('editor1');
-		</script>
+<script>
+	CKEDITOR.replace('editor1');
+</script>

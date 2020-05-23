@@ -38,6 +38,14 @@ public class PostServiceImpl implements PostService {
 	public int updatePost(Post post) {
 		return dao.updatePost(post);
 	}
+	
+	@Override
+	public int savePost(Post post) {
+		Date date = Calendar.getInstance().getTime();
+		post.setLastUpdateTime(date);
+		post.setPostDate(date);
+		return dao.savePost(post);
+	}
 
 	@Override
 	public int deletePost(int postId, int userId) {
