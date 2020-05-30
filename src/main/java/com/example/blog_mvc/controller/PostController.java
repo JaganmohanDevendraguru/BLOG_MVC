@@ -2,6 +2,7 @@ package com.example.blog_mvc.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -18,8 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.blog_mvc.model.Post;
+import com.example.blog_mvc.model.User;
 import com.example.blog_mvc.service.PostService;
-import com.example.blog_mvc.util.PostStatus;
 
 @Controller
 @RequestMapping("/user/posts")
@@ -29,14 +30,18 @@ public class PostController {
 
 	@Autowired
 	private PostService postService;
+	
+	@Autowired
+	private HttpSession session;
 
+	@GetMapping()
 	public ModelAndView viewAllPostsPage(ModelAndView mv) {
 		List<Post> list = postService.findAll();
 		mv.setViewName("posts");
 		mv.addObject("title", "List of Posts");
 		if (list != null && list.size() > 0)
-			mv.addObject("usersList", list);
-		log.debug("number of users fetched: " + list.size());
+			mv.addObject("postList", list);
+		log.debug("number of posts fetched: " + list.size());
 		return mv;
 	}
 
@@ -50,21 +55,38 @@ public class PostController {
 
 	@PostMapping(value = "create")
 	public ModelAndView processPostCreation(@Valid @ModelAttribute("p") Post post,
-			@RequestParam(required = false, value = "save") String saveFlag,
+			@RequestParam(required = false, value = "save") String draftFlag,
 			@RequestParam(required = false, value = "publish") String publishFlag, BindingResult result,
 			ModelAndView mv) {
-		log.info("Post button" + post.getStatus());
-		log.info("SaveFlag" + saveFlag + " and PublishFlag" + publishFlag);
+		int dbStatus = 0;
 		if (result.hasErrors()) {
 			mv.setViewName("create");
 		} else {
-			if (saveFlag != null)
-				post.setStatus(PostStatus.DRAFT.getStatus());
-			if (publishFlag != null)
-				post.setStatus(PostStatus.PUBLISHED.getStatus());
 			mv.setViewName("create");
-			log.info("Post" + post);
+			User user = (User)session.getAttribute("USERSESSION");
+			post.setUserId(user.getUserId());
+			dbStatus = postService.savePost(post, draftFlag != null ? draftFlag : publishFlag);
+			if (dbStatus == 1)
+				mv.setViewName("redirect:/user/posts");
+			else {
+				mv.setViewName("create");
+				mv.addObject("error", "Error occured while inserting!");
+			}
+		}
+		return mv;
+	}
+
+	@GetMapping("edit")
+	public ModelAndView showPostEditPage(@RequestParam("id") int postId, ModelAndView mv) {
+		User user = (User)session.getAttribute("USERSESSION");
+		Post post = postService.findByPostById(user.getUserId(), postId);
+		if (post != null) {
+			mv.addObject("title", "Edit Post");
+			mv.addObject("post", post);
+			mv.setViewName("editPost");
+		} else {
 			mv.setViewName("redirect:/user/posts");
+			mv.addObject("error", "Could not find the post");
 		}
 		return mv;
 	}

@@ -44,18 +44,8 @@ public class HomeController{
 	
 	@GetMapping("/")
 	public String viewHome(Model model) {
-		log.info("Logger worked!");
 		model.addAttribute("title", "Blogger's Home");
 		return "home";
-	}
-	
-	@GetMapping("/blogs")
-	public ModelAndView viewBlogs(ModelAndView mv) {
-		mv.setViewName("blogs");
-		log.info("blogs");
-		Set<Post> postTreeSet = new TreeSet<>();
-		mv.addObject("postDetails", postTreeSet);
-		return mv;
 	}
 
 	@GetMapping("/login")
@@ -71,8 +61,7 @@ public class HomeController{
 		if (!Validation.isNull(uname) && !Validation.isNull(pass)) {
 			User user = userService.findByUsernameAndPassword(uname, pass);
 			if(user != null) {
-				mv.setViewName("redirect:dashboard");
-				mv.addObject("title", "User Home Page");
+				mv.setViewName("redirect:user/dashboard");
 				session = request.getSession();
 				session.setMaxInactiveInterval(1800);
 				session.setAttribute("USERSESSION", user);				
@@ -80,13 +69,11 @@ public class HomeController{
 			else {
 				mv.addObject("error", "Username and Password not match!");
 				mv.setViewName("login");
-				mv.addObject("title", "User Login page");
 			}
 		}
 		else {
 			mv.addObject("error", "Username/Password cannot be empty");
 			mv.setViewName("login");
-			mv.addObject("title", "User Login page");
 		}
 		return mv;
 	}
@@ -96,7 +83,8 @@ public class HomeController{
 			ModelAndView mv) {
 		if(result.hasErrors()) {
 			log.debug("User add validation error" + result.toString());
-			mv.setViewName("add");
+			mv.setViewName("register");
+			mv.addObject("USStates", USAStates.values());
 		}
 		else {
 			userService.saveUser(user);
@@ -111,7 +99,16 @@ public class HomeController{
 		model.addAttribute("user", new User());
 		model.addAttribute("USStates", USAStates.values());
 		model.addAttribute("title", "User Registration");
-		return "userAdd";
+		return "register";
+	}
+	
+	@GetMapping("/blogs")
+	public ModelAndView viewBlogs(ModelAndView mv) {
+		mv.setViewName("blogs");
+		log.info("blogs");
+		Set<Post> postTreeSet = new TreeSet<>();
+		mv.addObject("postDetails", postTreeSet);
+		return mv;
 	}
 	
 	@GetMapping("/blogs/{postId}")

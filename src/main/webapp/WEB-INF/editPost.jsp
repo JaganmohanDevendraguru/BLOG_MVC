@@ -6,13 +6,19 @@
 			<div class="card bg-light">
 				<div class="card-header">
 					<div class="card-title text-center">
-						<strong>Create a New Post</strong>
+						<strong>Edit Post</strong>
 					</div>
 				</div>
 				<div class="card-body">
-					<form:form action="/user/posts/create" method="post"
-						modelAttribute="p" class="form-horizontal">
+					<form:form action="/user/posts/edit" method="post" modelAttribute="post"
+						class="form-horizontal">
 						<div class="form-row">
+							<div class="form-group col-md-12">
+								<label>Post Id:</label>
+								<div class="input-group input-group-md">
+									<form:input path="postId" class="form-control" disabled="true"/>
+								</div>
+							</div>
 							<div class="form-group col-md-12">
 								<label>Post Title:</label>
 								<div class="input-group input-group-md">
@@ -22,14 +28,14 @@
 							<div class="form-group">
 								<label>Post Body:</label>
 								<div class="input-group input-group-md">
-									<form:textarea path="post" class="form-control" id="editor1"/>
+									<form:textarea path="post" class="form-control" id="editor1" />
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="input-group input-group-md">
-									<form:button path="status" class="form-control btn btn-primary float-right" name="publish" value="P">Publish</form:button>
-									<form:button path="status" class="form-control btn btn-primary" name="save" value="DR">Save & Exit</form:button>
-									<input type="reset" value="Reset" class="btn btn-primary"/>
+									<form:button path="status"
+										class="form-control btn btn-primary float-right"
+										name="publish" value="P">Publish</form:button>
 								</div>
 							</div>
 						</div>

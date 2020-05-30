@@ -20,7 +20,7 @@ public class GenericExceptions {
 		log.error("Request: " + request.getRequestURI() + " raised an exception");
 		log.error("Exception Id is: " +Calendar.getInstance().getTimeInMillis());
 		e.printStackTrace();
-		return "error";
+		return "errorSql";
 	}
 	
 	@ExceptionHandler(value=RuntimeException.class)

@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -36,8 +37,13 @@ public class UserDaoImpl implements UserDao{
 
 	@Override
 	public User findByUsernameAndPassword(String name, String password) {
-		String user = "select * from user where username=? and password=?";
+		String user = "select * from user where user_name=? and password=?";
+		try {
 		return jdbcTemplate.queryForObject(user, new UserRowMapper(), name, password);
+		}catch(EmptyResultDataAccessException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override

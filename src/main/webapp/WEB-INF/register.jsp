@@ -5,8 +5,8 @@
 		<div class="col-md-10 col-md-offset-4">
 			<div class="card bg-light">
 				<div class="card-header">
-					<div class="card-title text-center">
-						<strong>Registration Form</strong>
+					<div class="card-title text-center text-primary">
+						<h4><strong>Registration Form</strong></h4>
 					</div>
 				</div>
 				<div class="card-body">
@@ -14,36 +14,41 @@
 						class="form-horizontal">
 						<div class="form-row">
 							<div class="form-group col-md-6">
-								<label>First Name:</label>
+								<span class="text-danger">* </span><label>First Name:</label>
 								<div class="input-group input-group-md">
 									<form:input path="firstName" class="form-control" />
 								</div>
+								<form:errors path="firstName" cssClass="text-danger"></form:errors>
 							</div>
 							<div class="form-group col-md-6">
-								<label>Last Name:</label>
+								<span class="text-danger">* </span><label>Last Name:</label>
 								<div class="input-group input-group-md">
 									<form:input path="lastName" class="form-control" />
 								</div>
+								<form:errors path="lastName" cssClass="text-danger"></form:errors>
 							</div>
 							<div class="form-group col-md-6">
-								<label>User Name:</label>
+								<span class="text-danger">* </span><label>User Name:</label>
 								<div class="input-group input-group-md">
 									<form:input path="userName" class="form-control" />
 								</div>
+								<form:errors path="userName" cssClass="text-danger"></form:errors>
 							</div>
 							<div class="form-group col-md-6">
-								<label>Password:</label>
+								<span class="text-danger">* </span><label>Password:</label>
 								<div class="input-group input-group-md">
 									<form:password path="password" class="form-control" />
 								</div>
+								<form:errors path="password" cssClass="text-danger"></form:errors>
 							</div>
 						</div>
 						<div class="form-row">
 							<div class="form-group col-md-6">
-								<label>Email:</label>
+								<span class="text-danger">* </span><label>Email:</label>
 								<div class="input-group input-group-md">
-									<form:input path="email" class="form-control" />
+									<form:input path="email" type="email" class="form-control" />
 								</div>
+								<form:errors path="email" cssClass="text-danger"></form:errors>
 							</div>
 							<div class="form-group col-md-6">
 								<label>Mobile:</label>
@@ -54,11 +59,9 @@
 						</div>
 						<div class="form-group">
 							<label>Address:</label>
-							<div class="col-md-12">
 								<div class="input-group input-group-md">
 									<form:input path="street" class="form-control" />
 								</div>
-							</div>
 						</div>
 						<div class="form-row">
 						<div class="form-group col-md-5">
@@ -71,7 +74,8 @@
 							<label>Active:</label>
 							<div class="input-group input-group-md">
 								<form:select path="activeFlag" class="form-control custom-select">
-								<form:options />
+								<form:option value="null" label="--Please select--"/>
+								<form:options items="${status}"/>
 								</form:select>
 							</div>
 						</div>
@@ -101,16 +105,14 @@
 						</div>
 						<div class="form-group">
 							<label>Country:</label>
-							<div class="col-md-12">
 								<div class="input-group input-group-md">
 									<form:input path="country" class="form-control" />
 								</div>
-							</div>
 						</div>
 						<div class="form-group">
 							<div class="col-md-2">
 								<div class="input-group input-group-md">
-									<form:button value="Login" class="form-control btn btn-primary">Login</form:button>
+									<form:button value="Login" class="form-control btn btn-primary float-right">Login</form:button>
 								</div>
 							</div>
 						</div>

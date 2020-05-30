@@ -1,3 +1,3 @@
 <%@ include file="include/meta.jspf" %>
-Oops..! Something went wrong..!!
+<h3>Error while processing in DB, please try again!</h3>
 <%@ include file="include/footer.jspf" %>

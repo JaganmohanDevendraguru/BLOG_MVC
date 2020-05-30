@@ -8,17 +8,17 @@
 	<div class="collapse navbar-collapse" id="navbarNav">
 		<ul class="navbar-nav">
 			<li class="nav-item active"><a class="nav-link"
-				href="/${context}">Home <span class="sr-only">(current)</span>
+				href="/${context}/user/dashboard">Dashboard <span class="sr-only">(current)</span>
 			</a></li>
-			<li class="nav-item"><a class="nav-link" href="${context}/login">Sign
-					in</a></li>
+			<li class="nav-item"><a class="nav-link" href="${context}/user/posts">Posts</a></li>
 			<li class="nav-item"><a class="nav-link"
-				href="${context}/register">Register</a></li>
-			<li class="nav-item"><a class="nav-link" href="${context}/blogs">Blog</a>
+				href="${context}/user/profile">User Profile</a></li>
+			<li class="nav-item"><a class="nav-link" href="${context}/comments">Comments</a>
 			</li>
 		</ul>
 		<ul class="navbar-nav ml-auto">
-			<li class="nav-item"><a class="nav-link" href="#">Search</a></li>
+			<li class="nav-item"><a href="${context}/user/profile" class="nav-link">Welcome, ${USERSESSION.userName}</a></li>
+			<li class="nav-item"><a class="nav-link" href="${context}/user/logout">Logout</a></li>
 		</ul> 
 	</div>
 </nav>

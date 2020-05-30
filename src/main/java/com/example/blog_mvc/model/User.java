@@ -1,14 +1,29 @@
 package com.example.blog_mvc.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class User {
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
+public class User implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7704401093421140398L;
+	
 	private int userId;
+	@NotEmpty(message = "First name cannot be empty")
 	private String firstName;
+	@NotEmpty(message = "Last name cannot be empty")
 	private String lastName;
+	@Size(min = 6, max = 18, message = "Password should be between 6 and 18")
 	private String password;
+	@Size(min = 6, max = 18, message = "User name should be between 6 and 18")
 	private String userName;
+	@Email(message = "Please enter valid email")
 	private String email;
 	private String mobile;
 	private String authToken;

@@ -17,6 +17,7 @@ public interface PostDao {
 	public abstract int updatePost(Post post);
 	public abstract int savePost(Post post);
 	public abstract int deletePost(int postId, int userId, Timestamp time);
-	public abstract Post findPostById(int id);
+	public abstract Post findPostById(int uid, int pid);
+	public abstract Post findPostById(int pid);
 	public abstract List<Post> findAllByUser(int id);
 }

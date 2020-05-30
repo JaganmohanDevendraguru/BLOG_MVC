@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.example.blog_mvc.dao.PostDao;
 import com.example.blog_mvc.model.Post;
 import com.example.blog_mvc.service.PostService;
+import com.example.blog_mvc.util.PostStatus;
 
 @Service
 public class PostServiceImpl implements PostService {
@@ -40,10 +41,12 @@ public class PostServiceImpl implements PostService {
 	}
 	
 	@Override
-	public int savePost(Post post) {
+	public int savePost(Post post, String publishStatus) {
 		Date date = Calendar.getInstance().getTime();
 		post.setLastUpdateTime(date);
 		post.setPostDate(date);
+		String status = publishStatus.equals(PostStatus.PUBLISHED.getStatus()) ? "P" : "DR";
+		post.setStatus(status);
 		return dao.savePost(post);
 	}
 
@@ -54,8 +57,15 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public Post findByPostById(int id) {
-		return dao.findPostById(id);
+	public Post findByPostById(int uid, int pid) {
+		POst postDB = 
+		Charset.forName("UTF-8");
+		return dao.findPostById(uid, pid);
+	}
+
+	@Override
+	public Post findByPostById(int pid) {
+		return dao.findPostById(pid);
 	}
 
 	@Override

@@ -7,7 +7,7 @@ import javax.servlet.http.HttpSession;
 public class Validation {
 
 	public static boolean isNull(String s) {
-		if(s != null && !s.isEmpty() && s.trim().equals(""))
+		if(s != null && !s.isEmpty() && !s.trim().equals(""))
 			return false;
 		return true;
 	}

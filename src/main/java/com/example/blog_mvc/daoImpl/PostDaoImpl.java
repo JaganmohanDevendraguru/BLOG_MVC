@@ -15,15 +15,15 @@ import com.example.blog_mvc.dao.PostDao;
 import com.example.blog_mvc.model.Post;
 
 @Repository
-public class PostDaoImpl implements PostDao{
+public class PostDaoImpl implements PostDao {
 
 	private JdbcTemplate jdbcTemplate;
-	
+
 	@Autowired
 	public PostDaoImpl(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
-	
+
 	@Override
 	public List<Post> findAll() {
 		String sql = "select * from post";
@@ -39,22 +39,22 @@ public class PostDaoImpl implements PostDao{
 	@Override
 	public List<Post> findAllByDateAndStatus(String status, Date date) {
 		String select = "select * from post where status=? and post_date=? order by post_date desc";
-		return jdbcTemplate.query(select, new PostRowMapper(),status, date);
+		return jdbcTemplate.query(select, new PostRowMapper(), status, date);
 	}
 
 	@Override
 	public int updatePost(Post post) {
 		String update = "update post set title=?, post=?, post_date=?, last_update_time=?, status=?"
 				+ "where post_id=? and user_id=?";
-		return jdbcTemplate.update(update, post.getPostTitle(), post.getPost(), post.getPostDate(), post.getLastUpdateTime(),
-				post.getStatus(), post.getPostId(), post.getUserId());
+		return jdbcTemplate.update(update, post.getPostTitle(), post.getPost(), post.getPostDate(),
+				post.getLastUpdateTime(), post.getStatus(), post.getPostId(), post.getUserId());
 	}
 
 	@Override
 	public int savePost(Post post) {
 		String insert = "insert into post (user_id, post_id, title, post, post_date, last_update_time, status) "
 				+ "values (?,?,?,?,?,?,?)";
-		return jdbcTemplate.update(insert, post.getUserId(), post.getPostId(), post.getPostTitle(), post.getPost(), 
+		return jdbcTemplate.update(insert, post.getUserId(), post.getPostId(), post.getPostTitle(), post.getPost(),
 				post.getPostDate(), post.getLastUpdateTime(), post.getStatus());
 	}
 
@@ -65,9 +65,15 @@ public class PostDaoImpl implements PostDao{
 	}
 
 	@Override
-	public Post findPostById(int id) {
-		String selectById = "select * from post where user_id=? order by post_date desc";
-		return jdbcTemplate.queryForObject(selectById, new PostRowMapper());
+	public Post findPostById(int uid, int pid) {
+		String selectById = "select * from post where user_id=? and post_id=? order by post_date desc";
+		return jdbcTemplate.queryForObject(selectById, new PostRowMapper(), uid, pid);
+	}
+
+	@Override
+	public Post findPostById(int pid) {
+		String selectById = "select * from post where post_id=? order by post_date desc";
+		return jdbcTemplate.queryForObject(selectById, new PostRowMapper(), pid);
 	}
 
 	@Override
@@ -78,20 +84,20 @@ public class PostDaoImpl implements PostDao{
 
 }
 
-class PostRowMapper implements RowMapper<Post>{
+class PostRowMapper implements RowMapper<Post> {
 
 	@Override
 	public Post mapRow(ResultSet rs, int rowNum) throws SQLException {
-		
+
 		Post post = new Post();
 		post.setUserId(rs.getInt(1));
 		post.setPostId(rs.getInt(2));
 		post.setPostTitle(rs.getString(3));
-		post.setPost(rs.getBlob(4));
+		post.setPost(rs.getBytes(4));
 		post.setPostDate(rs.getTimestamp(5));
 		post.setLastUpdateTime(rs.getTimestamp(6));
 		post.setStatus(rs.getString(7));
 		return post;
 	}
-	
+
 }

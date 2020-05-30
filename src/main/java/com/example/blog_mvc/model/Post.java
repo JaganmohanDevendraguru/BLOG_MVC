@@ -1,14 +1,21 @@
 package com.example.blog_mvc.model;
 
-import java.sql.Blob;
+import java.io.Serializable;
 import java.util.Date;
 
-public class Post {
+public class Post implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4200646718179635618L;
+	/**
+	 * 
+	 */
 	private int postId;
 	private int userId;
 	private String postTitle;
-	private Blob post;
+	private byte[] post;
 	private Date postDate;
 	private Date lastUpdateTime;
 	private String status;
@@ -18,7 +25,7 @@ public class Post {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Post(int postId, String postTitle, Blob post, Date postDate, Date lastUpdateTime, String status) {
+	public Post(int postId, String postTitle, byte[] post, Date postDate, Date lastUpdateTime, String status) {
 		super();
 		this.postId = postId;
 		this.postTitle = postTitle;
@@ -28,7 +35,7 @@ public class Post {
 		this.status = status;
 	}
 
-	public Post(int postId, int userId, String postTitle, Blob post, Date postDate, Date lastUpdateTime,
+	public Post(int postId, int userId, String postTitle, byte[] post, Date postDate, Date lastUpdateTime,
 			String status) {
 		super();
 		this.postId = postId;
@@ -58,10 +65,10 @@ public class Post {
 	public void setPostTitle(String postTitle) {
 		this.postTitle = postTitle;
 	}
-	public Blob getPost() {
+	public byte[] getPost() {
 		return post;
 	}
-	public void setPost(Blob post) {
+	public void setPost(byte[] post) {
 		this.post = post;
 	}
 	public Date getPostDate() {

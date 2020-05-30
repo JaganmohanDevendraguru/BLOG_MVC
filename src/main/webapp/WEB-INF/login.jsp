@@ -11,23 +11,32 @@
 				</div>
 				<div class="card-body">
 					<form action="login" method="post" class="form-horizontal">
+					<c:if test="${not empty error}">
+						<div class="form-group">
+							<div class="col-md-12">
+								<p class="alert alert-danger">${error}</p>
+							</div>
+						</div>
+						</c:if>
 						<div class="form-group">
 							<div class="col-md-12">
 								<div class="input-group input-group-md">
-									<input type="text" name="userName" class="form-control" placeholder="Username" />
+									<input type="text" name="userName" class="form-control"
+										placeholder="Username" />
 								</div>
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="col-md-12">
 								<div class="input-group input-group-md">
-									<input type="password" name="password" class="form-control" placeholder="Password" />
+									<input type="password" name="password" class="form-control"
+										placeholder="Password" />
 								</div>
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="col-md-12">
-								<input type="submit" value="Login" />
+								<input type="submit" value="Login" class="btn btn-primary" />
 							</div>
 						</div>
 					</form>

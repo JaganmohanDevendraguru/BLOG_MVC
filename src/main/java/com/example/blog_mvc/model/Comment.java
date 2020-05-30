@@ -1,9 +1,15 @@
 package com.example.blog_mvc.model;
 
+import java.io.Serializable;
 import java.sql.Blob;
 import java.util.Date;
 
-public class Comment {
+public class Comment implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8063952288669900365L;
 	private int commentId;
 	private int postId;
 	private int userId;
