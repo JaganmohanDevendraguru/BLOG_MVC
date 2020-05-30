@@ -58,8 +58,6 @@ public class PostServiceImpl implements PostService {
 
 	@Override
 	public Post findByPostById(int uid, int pid) {
-		POst postDB = 
-		Charset.forName("UTF-8");
 		return dao.findPostById(uid, pid);
 	}
 
