@@ -1,8 +1,8 @@
 package com.example.blog_mvc.util;
 
-import java.util.Calendar;
-
 import javax.servlet.http.HttpSession;
+
+import com.example.blog_mvc.model.User;
 
 public class Validation {
 
@@ -14,14 +14,23 @@ public class Validation {
 	
 	public static boolean isValidSession(HttpSession session, int time) {
 		boolean result = false;
-		long lastAccess = 0;
-		long now = Calendar.getInstance().getTimeInMillis();
 		if (session != null) {
-			lastAccess = session.getLastAccessedTime();
-			if((now - lastAccess) < time)
+			User user = (User)session.getAttribute("USERSESSION");
+			if(user != null)
 				result = true;
 		}
 			
 		return result;
+	}
+	
+	public static User getUserSession(HttpSession session) {
+		User user = null;
+		if (session != null) {
+			user = (User)session.getAttribute("USERSESSION");
+			if(user != null)
+				return user;
+		}
+			
+		return user;
 	}
 }

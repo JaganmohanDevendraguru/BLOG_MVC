@@ -2,9 +2,9 @@ package com.example.blog_mvc.service;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import com.example.blog_mvc.model.Post;
+import com.example.blog_mvc.model.PostDetails;
 
 public interface PostService {
 
@@ -17,5 +17,6 @@ public interface PostService {
 	public abstract Post findByPostById(int uid, int pid);
 	public abstract Post findByPostById(int pid);
 	public abstract List<Post> findAllByUser(int id);
-	public abstract List<Map<String, Object>> fullPostDetails(int postId);
+	public abstract PostDetails singlePostDetails(int postId);
+	public abstract List<PostDetails> fullPostDetails();
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.blog_mvc.dao.CommentDao;
 import com.example.blog_mvc.model.Comment;
+import com.example.blog_mvc.model.CommentDetails;
 import com.example.blog_mvc.service.CommentService;
 
 @Service
@@ -35,6 +36,15 @@ public class CommentServiceImpl implements CommentService {
 	public int updateComment(Comment comment) {
 		return dao.updateComment(comment);
 	}
+	
+	@Override
+	public int saveComment(Comment comment) {
+		Date now = new Date();
+		comment.setCommentDate(now);
+		comment.setLastUpdateTime(now);
+		comment.setStatus("P");
+		return dao.saveComment(comment);
+	}
 
 	@Override
 	public int deleteComment(int id) {
@@ -49,6 +59,11 @@ public class CommentServiceImpl implements CommentService {
 	@Override
 	public List<Comment> findAllByPost(int id) {
 		return dao.findAllByPost(id);
+	}
+
+	@Override
+	public List<CommentDetails> singlePostCommentDetails(int postId) {
+		return dao.singlePostCommentDetails(postId);
 	}
 
 }

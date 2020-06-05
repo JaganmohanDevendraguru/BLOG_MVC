@@ -4,13 +4,13 @@ import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.blog_mvc.dao.PostDao;
 import com.example.blog_mvc.model.Post;
+import com.example.blog_mvc.model.PostDetails;
 import com.example.blog_mvc.service.PostService;
 import com.example.blog_mvc.util.PostStatus;
 
@@ -72,8 +72,13 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public List<Map<String, Object>> fullPostDetails(int postId) {
-		return null;
+	public List<PostDetails> fullPostDetails() {
+		return dao.findAllDetails();
+	}
+	
+	@Override
+	public PostDetails singlePostDetails(int postId) {
+		return dao.singlePostDetails(postId);
 	}
 
 }

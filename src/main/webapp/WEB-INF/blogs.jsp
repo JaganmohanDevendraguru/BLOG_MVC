@@ -1,4 +1,5 @@
 <%@ include file="include/meta.jspf" %>
+<%@ include file="include/nav_outer.jspf"%>
     <div class="container">
       <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark">
         <div class="col-md-6 px-0">
@@ -48,9 +49,9 @@
           </h3>
 <c:forEach items="${postDetails}" var="pd">
           <div class="blog-post">
-            <h2 class="blog-post-title">${pd.post.title} </h2>
-            <p class="blog-post-meta">${pd.post.postDate} <a href="#">${pageScope.pd.author}</a></p>
-            <p>${pageScope.pd.postString}</p>
+            <h2 class="blog-post-title"><a href="/blogs/${pd.postId}">${pd.postTitle}</a></h2>
+            <p class="blog-post-meta">Posted ${pd.postDate} by <a href="#">${pd.userName}</a></p>
+            <p>${pd.postContent}</p>
           </div><!-- /.blog-post -->
 </c:forEach>
 

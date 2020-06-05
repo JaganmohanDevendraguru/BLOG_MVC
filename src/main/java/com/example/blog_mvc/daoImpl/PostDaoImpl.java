@@ -3,6 +3,7 @@ package com.example.blog_mvc.daoImpl;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Repository;
 
 import com.example.blog_mvc.dao.PostDao;
 import com.example.blog_mvc.model.Post;
+import com.example.blog_mvc.model.PostDetails;
 
 @Repository
 public class PostDaoImpl implements PostDao {
@@ -82,6 +84,20 @@ public class PostDaoImpl implements PostDao {
 		return jdbcTemplate.query(selectByUser, new PostRowMapper(), id);
 	}
 
+	@Override
+	public List<PostDetails> findAllDetails() {
+		String details = "select p.user_id, u.user_name, p.post_id, p.title, p.post, p.post_date from post p,"
+				+ "user u where p.user_id=u.user_id order by p.post_date desc";
+		return jdbcTemplate.query(details, new PostDetailsRowMapper());
+	}
+	
+	@Override
+	public PostDetails singlePostDetails(int pid) {
+		String selectByPost = "select p.user_id, u.user_name, p.post_id, p.title, p.post, p.post_date from post p,"
+				+ "user u where p.user_id=u.user_id and p.post_id=?";
+		return jdbcTemplate.queryForObject(selectByPost, new PostDetailsRowMapper(), pid);
+	}
+
 }
 
 class PostRowMapper implements RowMapper<Post> {
@@ -98,6 +114,22 @@ class PostRowMapper implements RowMapper<Post> {
 		post.setLastUpdateTime(rs.getTimestamp(6));
 		post.setStatus(rs.getString(7));
 		return post;
+	}
+
+}
+
+class PostDetailsRowMapper implements RowMapper<PostDetails> {
+	@Override
+	public PostDetails mapRow(ResultSet rs, int rowNum) throws SQLException {
+
+		PostDetails pd = new PostDetails();
+		pd.setUserId(rs.getInt(1));
+		pd.setUserName(rs.getString(2));
+		pd.setPostId(rs.getInt(3));
+		pd.setPostTitle(rs.getString(4));
+		pd.setPostContent(new String(Base64.getDecoder().decode(rs.getBytes(5))));
+		pd.setPostDate(rs.getTimestamp(6));
+		return pd;
 	}
 
 }

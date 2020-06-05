@@ -22,14 +22,17 @@
 							<div class="form-group">
 								<label>Post Body:</label>
 								<div class="input-group input-group-md">
-									<form:textarea path="post" class="form-control" id="editor1"/>
+									<form:textarea path="post" class="form-control" id="editor1" />
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="input-group input-group-md">
-									<form:button path="status" class="form-control btn btn-primary float-right" name="publish" value="P">Publish</form:button>
-									<form:button path="status" class="form-control btn btn-primary" name="save" value="DR">Save & Exit</form:button>
-									<input type="reset" value="Reset" class="btn btn-primary"/>
+									<form:button path="status"
+										class="form-control btn btn-primary float-right"
+										name="publish" value="P">Publish</form:button>
+									<form:button path="status" class="form-control btn btn-primary"
+										name="save" value="DR">Save & Exit</form:button>
+									<input type="reset" value="Reset" class="btn btn-primary" />
 								</div>
 							</div>
 						</div>

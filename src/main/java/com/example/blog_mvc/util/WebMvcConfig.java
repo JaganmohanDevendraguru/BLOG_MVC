@@ -21,7 +21,4 @@ public class WebMvcConfig implements WebMvcConfigurer{
 		registry.addConverter(new ByteArrayToStringBase64());
 	}
 	
-	
-
-	
 }

@@ -1,7 +1,6 @@
 package com.example.blog_mvc.model;
 
 import java.io.Serializable;
-import java.sql.Blob;
 import java.util.Date;
 
 public class Comment implements Serializable{
@@ -14,7 +13,7 @@ public class Comment implements Serializable{
 	private int postId;
 	private int userId;
 	private String commentTitle;
-	private Blob comment;
+	private byte[] comment;
 	private Date commentDate;
 	private Date lastUpdateTime;
 	private String status;
@@ -23,7 +22,7 @@ public class Comment implements Serializable{
 		super();
 	}
 	
-	public Comment(int commentId, String commentTitle, Blob comment, Date commentDate, Date lastUpdateTime,
+	public Comment(int commentId, String commentTitle, byte[] comment, Date commentDate, Date lastUpdateTime,
 			String status) {
 		super();
 		this.commentId = commentId;
@@ -34,7 +33,7 @@ public class Comment implements Serializable{
 		this.status = status;
 	}
 	
-	public Comment(int commentId, int postId, int userId, String commentTitle, Blob comment, Date commentDate,
+	public Comment(int commentId, int postId, int userId, String commentTitle, byte[] comment, Date commentDate,
 			Date lastUpdateTime, String status) {
 		super();
 		this.commentId = commentId;
@@ -71,10 +70,10 @@ public class Comment implements Serializable{
 	public void setCommentTitle(String commentTitle) {
 		this.commentTitle = commentTitle;
 	}
-	public Blob getComment() {
+	public byte[] getComment() {
 		return comment;
 	}
-	public void setComment(Blob comment) {
+	public void setComment(byte[] comment) {
 		this.comment = comment;
 	}
 	public Date getCommentDate() {

@@ -1,8 +1,6 @@
 package com.example.blog_mvc.controller;
 
 import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -22,7 +20,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.blog_mvc.model.Comment;
-import com.example.blog_mvc.model.Post;
+import com.example.blog_mvc.model.CommentDetails;
+import com.example.blog_mvc.model.PostDetails;
 import com.example.blog_mvc.model.User;
 import com.example.blog_mvc.service.CommentService;
 import com.example.blog_mvc.service.PostService;
@@ -105,24 +104,59 @@ public class HomeController{
 	@GetMapping("/blogs")
 	public ModelAndView viewBlogs(ModelAndView mv) {
 		mv.setViewName("blogs");
-		log.info("blogs");
-		Set<Post> postTreeSet = new TreeSet<>();
-		mv.addObject("postDetails", postTreeSet);
+		List<PostDetails> detailsList = postService.fullPostDetails();
+		mv.addObject("postDetails", detailsList);
+		mv.addObject("title", "Blogs");
 		return mv;
 	}
 	
 	@GetMapping("/blogs/{postId}")
-	public ModelAndView viewSinglePostPage(@PathVariable int postId, ModelAndView mv) {
-		Post post = postService.findByPostById(postId);
+	public ModelAndView viewSinglePostPage(@PathVariable int postId, ModelAndView mv, HttpSession session) {
+		PostDetails post = postService.singlePostDetails(postId);
 		if(post != null) {
 			mv.setViewName("singlePostDetails");
-			mv.addObject("post", post);
+			mv.addObject("pd", post);
 			mv.addObject("title", post.getPostTitle());
-			List<Comment> comments = commentService.findAllByPost(postId);
+			List<CommentDetails> comments = commentService.singlePostCommentDetails(postId);
 			if(comments != null && comments.size() > 0) {
 				mv.addObject("comments", comments);
 			}
 			else {mv.addObject("error", "No comments yet. Be the first one");}
+			
+			if(session.getAttribute("USERSESSION") !=null)
+				mv.addObject("comment", new Comment());
+		}
+		else {
+			mv.setViewName("redirect:blogs");
+		}
+		
+		return mv;
+	}
+	
+	@PostMapping("/blogs/{postId}")
+	public ModelAndView addCommentToSinglePostPage(@PathVariable int postId, ModelAndView mv, HttpSession session
+			, @ModelAttribute("comment") Comment comment) {
+		PostDetails post = postService.singlePostDetails(postId);
+		if(post != null) {
+			mv.setViewName("singlePostDetails");
+			mv.addObject("pd", post);
+			mv.addObject("title", post.getPostTitle());
+			User user = Validation.getUserSession(session);
+			if (user != null) {
+				comment.setPostId(postId);
+				comment.setUserId(user.getUserId());
+				int insert = commentService.saveComment(comment);
+			}
+			
+			List<CommentDetails> comments = commentService.singlePostCommentDetails(postId);
+			if(comments != null && comments.size() > 0) {
+				mv.addObject("comments", comments);
+			}
+			
+			else {mv.addObject("error", "No comments yet. Be the first one");}
+			
+			if(session.getAttribute("USERSESSION") !=null)
+				mv.addObject("comment", new Comment());
 		}
 		else {
 			mv.setViewName("redirect:blogs");
