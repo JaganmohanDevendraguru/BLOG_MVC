@@ -1,0 +1,55 @@
+2020-06-06 02:14:10.948  WARN 27268 --- [l-1 housekeeper] c.z.h.p.HikariPool                       : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3h21s267ms105µs800ns).
+2020-06-06 07:55:35.032  WARN 27268 --- [l-1 housekeeper] c.z.h.p.HikariPool                       : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=5h41m33s768ms892µs700ns).
+2020-06-06 08:47:13.544  INFO 27268 --- [       Thread-8] o.s.s.c.ThreadPoolTaskExecutor           : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-06-06 08:47:13.549  INFO 27268 --- [       Thread-8] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown initiated...
+2020-06-06 08:47:13.557  INFO 27268 --- [       Thread-8] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown completed.
+2020-06-06 08:47:14.198  INFO 27268 --- [  restartedMain] c.e.b.BlogMvcApplication                 : Starting BlogMvcApplication on DESKTOP-AMOCSMB with PID 27268 (D:\WorkSpace\STS\BLOG_MVC\target\classes started by jegan in D:\WorkSpace\STS\BLOG_MVC)
+2020-06-06 08:47:14.200  INFO 27268 --- [  restartedMain] c.e.b.BlogMvcApplication                 : No active profile set, falling back to default profiles: default
+2020-06-06 08:47:14.460  INFO 27268 --- [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2020-06-06 08:47:14.468  INFO 27268 --- [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 8ms. Found 0 JDBC repository interfaces.
+2020-06-06 08:47:14.695  INFO 27268 --- [  restartedMain] o.s.b.w.e.t.TomcatWebServer              : Tomcat initialized with port(s): 7070 (http)
+2020-06-06 08:47:14.696  INFO 27268 --- [  restartedMain] o.a.c.h.Http11NioProtocol                : Initializing ProtocolHandler ["http-nio-7070"]
+2020-06-06 08:47:14.697  INFO 27268 --- [  restartedMain] o.a.c.c.StandardService                  : Starting service [Tomcat]
+2020-06-06 08:47:14.697  INFO 27268 --- [  restartedMain] o.a.c.c.StandardEngine                   : Starting Servlet engine: [Apache Tomcat/9.0.34]
+2020-06-06 08:47:14.836  INFO 27268 --- [  restartedMain] o.a.j.s.TldScanner                       : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2020-06-06 08:47:14.843  INFO 27268 --- [  restartedMain] o.a.c.c.C.[.[.[/]                        : Initializing Spring embedded WebApplicationContext
+2020-06-06 08:47:14.844  INFO 27268 --- [  restartedMain] o.s.w.c.ContextLoader                    : Root WebApplicationContext: initialization completed in 641 ms
+2020-06-06 08:47:14.969  INFO 27268 --- [  restartedMain] c.z.h.HikariDataSource                   : HikariPool-2 - Starting...
+2020-06-06 08:47:14.982  INFO 27268 --- [  restartedMain] c.z.h.HikariDataSource                   : HikariPool-2 - Start completed.
+2020-06-06 08:47:15.185  INFO 27268 --- [  restartedMain] o.s.s.c.ThreadPoolTaskExecutor           : Initializing ExecutorService 'applicationTaskExecutor'
+2020-06-06 08:47:16.495  INFO 27268 --- [  restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2020-06-06 08:47:16.539  INFO 27268 --- [  restartedMain] s.a.ScheduledAnnotationBeanPostProcessor : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2020-06-06 08:47:16.550  INFO 27268 --- [  restartedMain] o.a.c.h.Http11NioProtocol                : Starting ProtocolHandler ["http-nio-7070"]
+2020-06-06 08:47:16.560  INFO 27268 --- [  restartedMain] o.s.b.w.e.t.TomcatWebServer              : Tomcat started on port(s): 7070 (http) with context path ''
+2020-06-06 08:47:16.561  INFO 27268 --- [  restartedMain] c.e.b.BlogMvcApplication                 : Started BlogMvcApplication in 2.413 seconds (JVM running for 118233.873)
+2020-06-06 08:47:16.568  INFO 27268 --- [  restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2020-06-06 08:47:39.434  INFO 27268 --- [nio-7070-exec-1] o.a.c.c.C.[.[.[/]                        : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-06-06 08:47:39.434  INFO 27268 --- [nio-7070-exec-1] o.s.w.s.DispatcherServlet                : Initializing Servlet 'dispatcherServlet'
+2020-06-06 08:47:39.440  INFO 27268 --- [nio-7070-exec-1] o.s.w.s.DispatcherServlet                : Completed initialization in 6 ms
+2020-06-06 11:19:39.111  WARN 27268 --- [nio-7070-exec-2] o.s.w.s.r.ResourceHttpRequestHandler     : Path contains "../" after call to StringUtils#cleanPath: [.../100px200]
+2020-06-06 11:29:39.169  INFO 27268 --- [      Thread-19] o.s.s.c.ThreadPoolTaskExecutor           : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-06-06 11:29:39.175  INFO 27268 --- [      Thread-19] c.z.h.HikariDataSource                   : HikariPool-2 - Shutdown initiated...
+2020-06-06 11:29:39.176  INFO 27268 --- [      Thread-19] c.z.h.HikariDataSource                   : HikariPool-2 - Shutdown completed.
+2020-06-06 11:29:39.614  INFO 27268 --- [  restartedMain] c.e.b.BlogMvcApplication                 : Starting BlogMvcApplication on DESKTOP-AMOCSMB with PID 27268 (D:\WorkSpace\STS\BLOG_MVC\target\classes started by jegan in D:\WorkSpace\STS\BLOG_MVC)
+2020-06-06 11:29:39.614  INFO 27268 --- [  restartedMain] c.e.b.BlogMvcApplication                 : No active profile set, falling back to default profiles: default
+2020-06-06 11:29:39.775  INFO 27268 --- [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2020-06-06 11:29:39.781  INFO 27268 --- [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 5ms. Found 0 JDBC repository interfaces.
+2020-06-06 11:29:39.902  INFO 27268 --- [  restartedMain] o.s.b.w.e.t.TomcatWebServer              : Tomcat initialized with port(s): 7070 (http)
+2020-06-06 11:29:39.902  INFO 27268 --- [  restartedMain] o.a.c.h.Http11NioProtocol                : Initializing ProtocolHandler ["http-nio-7070"]
+2020-06-06 11:29:39.902  INFO 27268 --- [  restartedMain] o.a.c.c.StandardService                  : Starting service [Tomcat]
+2020-06-06 11:29:39.902  INFO 27268 --- [  restartedMain] o.a.c.c.StandardEngine                   : Starting Servlet engine: [Apache Tomcat/9.0.34]
+2020-06-06 11:29:39.950  INFO 27268 --- [  restartedMain] o.a.j.s.TldScanner                       : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2020-06-06 11:29:39.950  INFO 27268 --- [  restartedMain] o.a.c.c.C.[.[.[/]                        : Initializing Spring embedded WebApplicationContext
+2020-06-06 11:29:39.950  INFO 27268 --- [  restartedMain] o.s.w.c.ContextLoader                    : Root WebApplicationContext: initialization completed in 336 ms
+2020-06-06 11:29:39.982  INFO 27268 --- [  restartedMain] c.z.h.HikariDataSource                   : HikariPool-3 - Starting...
+2020-06-06 11:29:39.982  INFO 27268 --- [  restartedMain] c.z.h.HikariDataSource                   : HikariPool-3 - Start completed.
+2020-06-06 11:29:40.075  INFO 27268 --- [  restartedMain] o.s.s.c.ThreadPoolTaskExecutor           : Initializing ExecutorService 'applicationTaskExecutor'
+2020-06-06 11:29:40.685  INFO 27268 --- [  restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2020-06-06 11:29:40.691  INFO 27268 --- [  restartedMain] s.a.ScheduledAnnotationBeanPostProcessor : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2020-06-06 11:29:40.691  INFO 27268 --- [  restartedMain] o.a.c.h.Http11NioProtocol                : Starting ProtocolHandler ["http-nio-7070"]
+2020-06-06 11:29:40.691  INFO 27268 --- [  restartedMain] o.s.b.w.e.t.TomcatWebServer              : Tomcat started on port(s): 7070 (http) with context path ''
+2020-06-06 11:29:40.691  INFO 27268 --- [  restartedMain] c.e.b.BlogMvcApplication                 : Started BlogMvcApplication in 1.148 seconds (JVM running for 127978.012)
+2020-06-06 11:29:40.691  INFO 27268 --- [  restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2020-06-06 11:30:36.712  INFO 27268 --- [nio-7070-exec-2] o.a.c.c.C.[.[.[/]                        : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-06-06 11:30:36.712  INFO 27268 --- [nio-7070-exec-2] o.s.w.s.DispatcherServlet                : Initializing Servlet 'dispatcherServlet'
+2020-06-06 11:30:36.718  INFO 27268 --- [nio-7070-exec-2] o.s.w.s.DispatcherServlet                : Completed initialization in 6 ms

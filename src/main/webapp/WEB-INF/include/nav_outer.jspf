@@ -10,8 +10,28 @@
 			<li class="nav-item active"><a class="nav-link"
 				href="${context}">Home <span class="sr-only">(current)</span>
 			</a></li>
-			<li class="nav-item"><a class="nav-link" href="${context}/blogs">Blog</a>
+			<li class="nav-item"><a class="nav-link" href="${context}/blogs">Blogs</a>
 			</li>
+			<c:choose>
+				<c:when test="${USERSESSION != null}">
+					<li class="nav-item active"><a class="nav-link"
+						href="/${context}/user/dashboard">Dashboard <span
+							class="sr-only">(current)</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="${context}/user/posts">Posts</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="${context}/user/profile">User Profile</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="${context}/comments">Comments</a></li>
+				</c:when>
+				<c:otherwise>
+					<li class="nav-item"><a class="nav-link"
+						href="${context}/login">Sign in</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="${context}/register">Register</a></li>
+				</c:otherwise>
+			</c:choose>
 		</ul>
 		<ul class="navbar-nav ml-auto">
 			<c:choose>
@@ -22,10 +42,7 @@
 						href="${context}/user/logout">Logout</a></li>
 				</c:when>
 				<c:otherwise>
-					<li class="nav-item"><a class="nav-link"
-						href="${context}/login">Sign in</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="${context}/register">Register</a></li>
+
 				</c:otherwise>
 			</c:choose>
 			<li class="nav-item"><a class="nav-link" href="#">Search</a></li>
