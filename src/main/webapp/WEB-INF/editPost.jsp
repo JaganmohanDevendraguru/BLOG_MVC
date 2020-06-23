@@ -10,13 +10,16 @@
 					</div>
 				</div>
 				<div class="card-body">
-					<form:form action="/user/posts/edit" method="post" modelAttribute="post"
-						class="form-horizontal">
+					<c:if test="${error != null}">
+						<p class="text-danger">${error}</p>
+					</c:if>
+					<form:form action="/user/posts/edit" method="post"
+						modelAttribute="post" class="form-horizontal">
 						<div class="form-row">
 							<div class="form-group col-md-12">
 								<label>Post Id:</label>
 								<div class="input-group input-group-md">
-									<form:input path="postId" class="form-control" disabled="true"/>
+									<form:input path="postId" class="form-control" readonly="true" />
 								</div>
 							</div>
 							<div class="form-group col-md-12">
@@ -31,11 +34,20 @@
 									<form:textarea path="post" class="form-control" id="editor1" />
 								</div>
 							</div>
+							<div class="form-group col-md-12">
+								<label>Post action:</label>
+								${post.postStatus}
+								<div class="input-group input-group-md">
+									<form:select path="postStatus" class="form-control custom-select">
+									<form:options items="${active}" itemLabel="display" itemValue="code" />
+									</form:select>
+								</div>
+							</div>
 							<div class="form-group">
 								<div class="input-group input-group-md">
-									<form:button path="status"
+									<form:button
 										class="form-control btn btn-primary float-right"
-										name="publish" value="P">Publish</form:button>
+										name="publish">Publish</form:button>
 								</div>
 							</div>
 						</div>

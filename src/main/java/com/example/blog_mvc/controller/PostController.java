@@ -21,6 +21,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.example.blog_mvc.model.Post;
 import com.example.blog_mvc.model.User;
 import com.example.blog_mvc.service.PostService;
+import com.example.blog_mvc.util.ActiveStatus;
+import com.example.blog_mvc.util.Validation;
 
 @Controller
 @RequestMapping("/user/posts")
@@ -36,7 +38,8 @@ public class PostController {
 
 	@GetMapping()
 	public ModelAndView viewAllPostsPage(ModelAndView mv) {
-		List<Post> list = postService.findAll();
+		User user = Validation.getUserSession(session);
+		List<Post> list = postService.findAllByUser(user.getUserId());
 		mv.setViewName("posts");
 		mv.addObject("title", "List of Posts");
 		if (list != null && list.size() > 0)
@@ -50,22 +53,22 @@ public class PostController {
 		log.info("create worked");
 		mv.addAttribute("p", new Post());
 		mv.addAttribute("title", "Post Creation");
+		mv.addAttribute("postStatus", ActiveStatus.values());
 		return "createPost";
 	}
 
 	@PostMapping(value = "create")
-	public ModelAndView processPostCreation(@Valid @ModelAttribute("p") Post post,
-			@RequestParam(required = false, value = "save") String draftFlag,
-			@RequestParam(required = false, value = "publish") String publishFlag, BindingResult result,
+	public ModelAndView processPostCreation(@Valid @ModelAttribute("p") Post post, BindingResult result,
 			ModelAndView mv) {
 		int dbStatus = 0;
+		log.info("processPostCreation() --> ");
 		if (result.hasErrors()) {
 			mv.setViewName("create");
 		} else {
 			mv.setViewName("create");
 			User user = (User)session.getAttribute("USERSESSION");
 			post.setUserId(user.getUserId());
-			dbStatus = postService.savePost(post, draftFlag != null ? draftFlag : publishFlag);
+			dbStatus = postService.savePost(post);
 			if (dbStatus == 1)
 				mv.setViewName("redirect:/user/posts");
 			else {
@@ -83,10 +86,32 @@ public class PostController {
 		if (post != null) {
 			mv.addObject("title", "Edit Post");
 			mv.addObject("post", post);
+			mv.addObject("active", ActiveStatus.values());
 			mv.setViewName("editPost");
 		} else {
 			mv.setViewName("redirect:/user/posts");
 			mv.addObject("error", "Could not find the post");
+		}
+		return mv;
+	}
+	
+	@PostMapping("edit")
+	public ModelAndView processPostEdit(@Valid @ModelAttribute("post") Post post, BindingResult result,
+			ModelAndView mv) {
+		int dbStatus = 0;
+		log.info("post comes to editProcess " + post);
+		if (result.hasErrors()) {
+			mv.setViewName("editPost?id="+post.getPostId());
+		} else {
+			User user = (User)session.getAttribute("USERSESSION");
+			post.setUserId(user.getUserId());
+			dbStatus = postService.updatePost(post);
+			if (dbStatus == 1)
+				mv.setViewName("redirect:/user/posts");
+			else {
+				mv.setViewName("editPost?id="+post.getPostId());
+				mv.addObject("error", "Error occured while inserting!");
+			}
 		}
 		return mv;
 	}

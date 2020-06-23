@@ -3,6 +3,7 @@ package com.example.blog_mvc.dao;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
@@ -22,5 +23,10 @@ public interface PostDao {
 	public abstract Post findPostById(int pid);
 	public abstract List<Post> findAllByUser(int id);
 	public abstract List<PostDetails> findAllDetails();
+	public List<PostDetails> findAllDetails(String status);
 	public abstract PostDetails singlePostDetails(int postId);
+	public abstract List<Post> findAllByUser(int id, int limit);
+	public List<Map<String, Object>> getRecentPostsByUser(int uid, int limit);
+	public List<Map<String, Object>> getRecentPostsByUser(int uid, int limit, String status);
+
 }

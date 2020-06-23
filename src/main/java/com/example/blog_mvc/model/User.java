@@ -23,7 +23,7 @@ public class User implements Serializable{
 	private String password;
 	@Size(min = 6, max = 18, message = "User name should be between 6 and 18")
 	private String userName;
-	@Email(message = "Please enter valid email")
+	@Email(regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$", message = "Please enter valid email")
 	private String email;
 	private String mobile;
 	private String authToken;

@@ -3,6 +3,8 @@ package com.example.blog_mvc.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.validation.constraints.NotEmpty;
+
 public class Comment implements Serializable{
 	
 	/**
@@ -12,7 +14,9 @@ public class Comment implements Serializable{
 	private int commentId;
 	private int postId;
 	private int userId;
+	@NotEmpty(message="Please enter the title of the comment!")
 	private String commentTitle;
+	@NotEmpty(message="Comment cannot be empty")
 	private byte[] comment;
 	private Date commentDate;
 	private Date lastUpdateTime;

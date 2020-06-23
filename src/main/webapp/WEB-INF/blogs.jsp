@@ -45,11 +45,11 @@
       <div class="row">
         <div class="col-md-8 blog-main">
           <h3 class="pb-3 mb-4 font-italic border-bottom">
-            From the Firehose
+            From the Latest Posts
           </h3>
 <c:forEach items="${postDetails}" var="pd">
           <div class="blog-post">
-            <h2 class="blog-post-title"><a href="/blogs/${pd.postId}">${pd.postTitle}</a></h2>
+            <h2 class="blog-post-title text-secondary"><a href="/blogs/${pd.postId}">${pd.postTitle}</a></h2>
             <p class="blog-post-meta">Posted ${pd.postDate} by <a href="#">${pd.userName}</a></p>
             <p>${pd.postContent}</p>
           </div><!-- /.blog-post -->

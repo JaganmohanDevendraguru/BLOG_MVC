@@ -3,9 +3,12 @@ package com.example.blog_mvc.daoImpl;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Base64;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -49,7 +52,7 @@ public class PostDaoImpl implements PostDao {
 		String update = "update post set title=?, post=?, post_date=?, last_update_time=?, status=?"
 				+ "where post_id=? and user_id=?";
 		return jdbcTemplate.update(update, post.getPostTitle(), post.getPost(), post.getPostDate(),
-				post.getLastUpdateTime(), post.getStatus(), post.getPostId(), post.getUserId());
+				post.getLastUpdateTime(), post.getPostStatus(), post.getPostId(), post.getUserId());
 	}
 
 	@Override
@@ -57,7 +60,7 @@ public class PostDaoImpl implements PostDao {
 		String insert = "insert into post (user_id, post_id, title, post, post_date, last_update_time, status) "
 				+ "values (?,?,?,?,?,?,?)";
 		return jdbcTemplate.update(insert, post.getUserId(), post.getPostId(), post.getPostTitle(), post.getPost(),
-				post.getPostDate(), post.getLastUpdateTime(), post.getStatus());
+				post.getPostDate(), post.getLastUpdateTime(), post.getPostStatus());
 	}
 
 	@Override
@@ -80,15 +83,25 @@ public class PostDaoImpl implements PostDao {
 
 	@Override
 	public List<Post> findAllByUser(int id) {
-		String selectByUser = "select * from post where user_id=? order by post_date desc";
-		return jdbcTemplate.query(selectByUser, new PostRowMapper(), id);
+		return findAllByUser(id, 0);
 	}
 
 	@Override
 	public List<PostDetails> findAllDetails() {
-		String details = "select p.user_id, u.user_name, p.post_id, p.title, p.post, p.post_date from post p,"
-				+ "user u where p.user_id=u.user_id order by p.post_date desc";
-		return jdbcTemplate.query(details, new PostDetailsRowMapper());
+		return findAllDetails(null);
+	}
+	
+	@Override
+	public List<PostDetails> findAllDetails(String status) {
+		StringBuilder details = new StringBuilder("select p.user_id, u.user_name, p.post_id, p.title, p.post, p.post_date from post p,"
+				+ "user u where p.user_id=u.user_id");
+		if(status != null) {
+			details.append(" and p.status=? order by p.post_date desc");
+			return jdbcTemplate.query(details.toString(), new PostDetailsRowMapper(), status);
+		}
+			
+		details.append("  order by p.post_date desc");
+		return jdbcTemplate.query(details.toString(), new PostDetailsRowMapper());
 	}
 	
 	@Override
@@ -97,6 +110,35 @@ public class PostDaoImpl implements PostDao {
 				+ "user u where p.user_id=u.user_id and p.post_id=?";
 		return jdbcTemplate.queryForObject(selectByPost, new PostDetailsRowMapper(), pid);
 	}
+
+	@Override
+	public List<Post> findAllByUser(int id, int limit) {
+		StringBuilder selectByUser = new StringBuilder("select * from post where user_id=? order by post_date desc");
+		if(limit != 0) {
+			selectByUser.append(" limit ?");
+			return jdbcTemplate.query(selectByUser.toString(), new PostRowMapper(), id, limit);
+		}
+		else	
+			return jdbcTemplate.query(selectByUser.toString(), new PostRowMapper(), id);
+	}
+	
+	@Override
+	public List<Map<String, Object>> getRecentPostsByUser(int uid, int limit, String status){
+		StringBuilder recentPost = new StringBuilder("SELECT post_id,title FROM post WHERE user_id = ? and status=? order by post_date desc limit ?");
+		if(status != null) {
+			return jdbcTemplate.queryForList(recentPost.toString(), uid, status, limit);
+		}
+		else {
+			return jdbcTemplate.queryForList(recentPost.toString(), uid, "P", limit);
+			}
+	    
+	}
+	
+	@Override
+	public List<Map<String, Object>> getRecentPostsByUser(int uid, int limit){
+	    return getRecentPostsByUser(uid, limit, null);
+	}
+	
 
 }
 
@@ -112,7 +154,7 @@ class PostRowMapper implements RowMapper<Post> {
 		post.setPost(rs.getBytes(4));
 		post.setPostDate(rs.getTimestamp(5));
 		post.setLastUpdateTime(rs.getTimestamp(6));
-		post.setStatus(rs.getString(7));
+		post.setPostStatus(rs.getString(7));
 		return post;
 	}
 
@@ -128,7 +170,15 @@ class PostDetailsRowMapper implements RowMapper<PostDetails> {
 		pd.setPostId(rs.getInt(3));
 		pd.setPostTitle(rs.getString(4));
 		pd.setPostContent(new String(Base64.getDecoder().decode(rs.getBytes(5))));
-		pd.setPostDate(rs.getTimestamp(6));
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		try {
+			pd.setPostDate(sdf.parse(rs.getTimestamp(6).toString()));
+			System.out.println(pd.getPostDate());
+		} catch (ParseException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return pd;
 	}
 

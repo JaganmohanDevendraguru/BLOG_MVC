@@ -1,5 +1,8 @@
 package com.example.blog_mvc.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -11,7 +14,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.blog_mvc.model.User;
+import com.example.blog_mvc.service.PostService;
 import com.example.blog_mvc.service.UserService;
+import com.example.blog_mvc.util.USAStates;
+import com.example.blog_mvc.util.UserStatus;
+import com.example.blog_mvc.util.Validation;
 
 /*
  * 
@@ -22,20 +30,34 @@ import com.example.blog_mvc.service.UserService;
 public class UserController {
 	
 	@Autowired
-	private UserService service;
+	private UserService userService;
+
+	@Autowired
+	private PostService postService;
 	
 	private Logger log =LoggerFactory.getLogger(UserController.class);
 	
 	@GetMapping(value="dashboard")
-	public String viewDashboard(ModelAndView mv) {
+	public ModelAndView viewDashboard(ModelAndView mv, HttpSession session) {
 		mv.addObject("title", "Dashboard");
-		return "dashboard";
+		mv.setViewName("dashboard");
+		List<Map<String, Object>> recentPosts= postService.getRecentPostsByUser(Validation.getUserSession(session).getUserId(), 5);
+		List<Map<String, Object>> draftPosts= postService.getRecentPostsByUser(Validation.getUserSession(session).getUserId(), 5, "DR");
+		log.info("posts fetched in recentPost: " + recentPosts.size());
+		mv.addObject("recentPosts", recentPosts);
+		mv.addObject("draftPosts", draftPosts);
+		return mv;
 	}
 	
 	@GetMapping(value="profile")
-	public String viewProfile(ModelAndView mv) {
+	public ModelAndView viewProfile(ModelAndView mv, HttpSession session) {
 		mv.addObject("title", "Profile Details");
-		return "profile";
+		mv.setViewName("profile");
+		User user = Validation.getUserSession(session);
+		mv.addObject("user", user);
+		mv.addObject("status", UserStatus.values());
+		mv.addObject("USStates", USAStates.values());
+		return mv;
 	}
 	
 	@GetMapping("/logout")

@@ -2,6 +2,8 @@ package com.example.blog_mvc.daoImpl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Base64;
 import java.util.List;
 
@@ -109,12 +111,17 @@ class CommentDetailsRowMapper implements RowMapper<CommentDetails> {
 	public CommentDetails mapRow(ResultSet rs, int rowNum) throws SQLException {
 
 		CommentDetails cd = new CommentDetails();
+		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		cd.setUserId(rs.getInt(1));
 		cd.setUserName(rs.getString(2));
 		cd.setCommentId(rs.getInt(3));
 		cd.setCommentTitle(rs.getString(4));
 		cd.setCommentContent(new String(Base64.getDecoder().decode(rs.getBytes(5))));
-		cd.setCommentedDate(rs.getTimestamp(6));
+		try {
+			cd.setCommentedDate(sf.parse(rs.getTimestamp(6).toString()));
+		} catch (ParseException | SQLException e) {
+			e.printStackTrace();
+		}
 		return cd;
 	}
 

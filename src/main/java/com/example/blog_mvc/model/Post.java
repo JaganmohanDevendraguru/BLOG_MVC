@@ -3,6 +3,10 @@ package com.example.blog_mvc.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.validation.constraints.NotEmpty;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Post implements Serializable{
 
 	/**
@@ -14,29 +18,33 @@ public class Post implements Serializable{
 	 */
 	private int postId;
 	private int userId;
+	@NotEmpty(message = "Post title cannot be empty")
 	private String postTitle;
+	@NotEmpty(message = "Post cannot be empty")
 	private byte[] post;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date postDate;
 	private Date lastUpdateTime;
-	private String status;
+	@NotEmpty(message = "Please select the valid status")
+	private String postStatus;
 	
 	public Post() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Post(int postId, String postTitle, byte[] post, Date postDate, Date lastUpdateTime, String status) {
+	public Post(int postId, String postTitle, byte[] post, Date postDate, Date lastUpdateTime, String postStatus) {
 		super();
 		this.postId = postId;
 		this.postTitle = postTitle;
 		this.post = post;
 		this.postDate = postDate;
 		this.lastUpdateTime = lastUpdateTime;
-		this.status = status;
+		this.postStatus = postStatus;
 	}
 
 	public Post(int postId, int userId, String postTitle, byte[] post, Date postDate, Date lastUpdateTime,
-			String status) {
+			String postStatus) {
 		super();
 		this.postId = postId;
 		this.userId = userId;
@@ -44,7 +52,7 @@ public class Post implements Serializable{
 		this.post = post;
 		this.postDate = postDate;
 		this.lastUpdateTime = lastUpdateTime;
-		this.status = status;
+		this.postStatus = postStatus;
 	}
 
 	public int getPostId() {
@@ -83,16 +91,16 @@ public class Post implements Serializable{
 	public void setLastUpdateTime(Date lastUpdateTime) {
 		this.lastUpdateTime = lastUpdateTime;
 	}
-	public String getStatus() {
-		return status;
+	public String getPostStatus() {
+		return postStatus;
 	}
-	public void setStatus(String status) {
-		this.status = status;
+	public void setPostStatus(String postStatus) {
+		this.postStatus = postStatus;
 	}
 	@Override
 	public String toString() {
 		return "Post [postId=" + postId + ", userId=" + userId + ", postTitle=" + postTitle 
-				+ ", postDate=" + postDate + ", lastUpdateTime=" + lastUpdateTime + ", status=" + status + "]";
+				+ ", postDate=" + postDate + ", lastUpdateTime=" + lastUpdateTime + ", status=" + postStatus + "]";
 	}
 	
 }

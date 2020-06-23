@@ -1,8 +1,8 @@
 <%@ include file="include/meta.jspf"%>
 <%@ include file="include/nav_outer.jspf"%>
 <div class="container">
-	<div class="row">
-		<div class="col-md-4 col-md-offset-4">
+	<div class="row" style="height:69vh">
+		<div class="col-md-4 offset-md-4">
 			<div class="card bg-light">
 				<div class="card-header">
 					<div class="card-title text-center">
@@ -36,7 +36,7 @@
 						</div>
 						<div class="form-group">
 							<div class="col-md-12">
-								<input type="submit" value="Login" class="btn btn-primary" />
+								<input type="submit" value="Login" class="btn btn-lg btn-block btn-primary" />
 							</div>
 						</div>
 					</form>

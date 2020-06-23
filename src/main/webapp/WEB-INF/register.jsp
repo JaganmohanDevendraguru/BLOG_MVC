@@ -2,10 +2,10 @@
 <%@ include file="include/nav_outer.jspf"%>
 <div class="container">
 	<div class="row">
-		<div class="col-md-10 col-md-offset-4">
+ 		<div class="col-md-10 offset-md-1">
 			<div class="card bg-light">
 				<div class="card-header">
-					<div class="card-title text-center text-primary">
+					<div class="card-title text-primary">
 						<h4><strong>Registration Form</strong></h4>
 					</div>
 				</div>
@@ -119,7 +119,7 @@
 					</form:form>
 				</div>
 			</div>
-		</div>
+</div>
 	</div>
 </div>
 <%@ include file="include/footer.jspf"%>
